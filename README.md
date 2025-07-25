@@ -47,7 +47,7 @@ abrigo-api/
 
 ```bash
 ./mvnw spring-boot:run
-
+```
 
 Acesse:
 
@@ -92,18 +92,23 @@ Buscar animais que:
        "(LOWER(a.caracteristicas) LIKE LOWER(CONCAT('%', :termo, '%')) " +
        "OR LOWER(a.doencas) LIKE LOWER(CONCAT('%', :termo, '%')))")
 List<Animal> buscarAnimaisPorCaracteristicaOuDoenca(@Param("termo") String termo);
+```
 
 📄 Em AnimalService.java:
+```java
 public List<AnimalDTO> buscarPorTermo(String termo) {
     return animalRepo.buscarAnimaisPorCaracteristicaOuDoenca(termo)
             .stream().map(this::toDTO).collect(Collectors.toList());
 }
+```
 
 📄 Em AnimalController.java:
+```java
 @GetMapping("/buscar-por-termo")
 public List<AnimalDTO> buscarPorTermo(@RequestParam String termo) {
     return service.buscarPorTermo(termo);
 }
+```
 
 ➡ Exemplo de chamada: GET /animais/buscar-por-termo?termo=asma
 
@@ -170,16 +175,19 @@ abrigo-frontend/
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/abrigo-frontend.git
+git clone https://github.com/ramiroaz/abrigo-frontend.git
 cd abrigo-frontend
+```
 
 ### 2. Instalar dependências
 ```bash
 npm install
+```
 
 ### 3. Rodar localmente
 ```bash
 npm start
+```
 
 ### 🚀 Frontend disponível em: http://localhost:3000 
 
@@ -187,7 +195,7 @@ npm start
 ```bash
 npm run build       # build de produção
 npm test            # testes (se configurado)
-
+```
 
 ---
 
@@ -196,21 +204,25 @@ npm test            # testes (se configurado)
 ```bash
 npx create-react-app abrigo-frontend
 cd abrigo-frontend
+```
 
 ## Instalar dependências adicionais
 ```bash
 npm install axios react-router-dom react-icons react-toastify
+```
 
 ## 💡 Por padrão, o create-react-app usa React 18. Mas se quiser garantir:
 ```bash
 npm install react@18 react-dom@18
+```
 
 ## 🔔 Toasts com react-toastify
 ```bash
 npm install react-toastify
+```
 
 ## 🔔 ícones visuais
 ```bash
 npm install react-icons
-
+```
 
