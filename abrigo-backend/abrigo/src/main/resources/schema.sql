@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS animal;
+DROP TABLE IF EXISTS raca;
+DROP TABLE IF EXISTS especie;
+DROP TABLE IF EXISTS funcionario;
+
 CREATE TABLE especie (
   id BIGINT PRIMARY KEY,
   nome VARCHAR(50) NOT NULL
@@ -25,6 +30,10 @@ CREATE TABLE animal (
   disponivel_para_adocao BOOLEAN,
   raca_id BIGINT NOT NULL,
   funcionario_id BIGINT NOT NULL,
+  data_nascimento DATE,
+  data_entrada DATE,
+  data_adocao DATE,
+  data_obito DATE,
   FOREIGN KEY (raca_id) REFERENCES raca(id),
   FOREIGN KEY (funcionario_id) REFERENCES funcionario(id)
 );

@@ -39,5 +39,10 @@ public class GlobalExceptionHandler {
             .body("Registro não encontrado.");
     }
 
+    //
+    @ExceptionHandler(ValidacaoException.class)
+    public ResponseEntity<String> handleValidacao(ValidacaoException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro de validação: " + ex.getMessage());
+    }
 
 }

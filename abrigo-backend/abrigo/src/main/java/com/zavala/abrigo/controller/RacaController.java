@@ -1,5 +1,6 @@
 package com.zavala.abrigo.controller;
 
+import com.zavala.abrigo.dto.FuncionarioDTO;
 import com.zavala.abrigo.dto.RacaDTO;
 import com.zavala.abrigo.service.RacaService;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +35,11 @@ public class RacaController {
     @DeleteMapping("/{id}")
     public void excluir(@PathVariable Long id) {
         service.excluir(id);
+    }
+    
+    @PutMapping("/{id}")
+    public void atualizar(@PathVariable Long id, @RequestBody RacaDTO dto) {
+        dto.setId(id); // garante que o ID seja atribuído corretamente
+        service.salvar(dto); 
     }
 }

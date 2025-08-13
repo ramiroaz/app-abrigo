@@ -1,5 +1,6 @@
 package com.zavala.abrigo.controller;
 
+import com.zavala.abrigo.dto.EspecieDTO;
 import com.zavala.abrigo.dto.FuncionarioDTO;
 import com.zavala.abrigo.service.FuncionarioService;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +35,11 @@ public class FuncionarioController {
     @DeleteMapping("/{id}")
     public void excluir(@PathVariable Long id) {
         service.excluir(id);
+    }
+    
+    @PutMapping("/{id}")
+    public void atualizar(@PathVariable Long id, @RequestBody FuncionarioDTO dto) {
+        dto.setId(id); // garante que o ID seja atribuído corretamente
+        service.salvar(dto); 
     }
 }

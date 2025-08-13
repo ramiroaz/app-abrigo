@@ -35,4 +35,10 @@ public class EspecieController {
     public void excluir(@PathVariable Long id) {
         service.excluir(id);
     }
+    
+    @PutMapping("/{id}")
+    public void atualizar(@PathVariable Long id, @RequestBody EspecieDTO dto) {
+        dto.setId(id); // garante que o ID seja atribuído corretamente
+        service.salvar(dto); // ou service.atualizar(dto), se tiver lógica separada
+    }
 }

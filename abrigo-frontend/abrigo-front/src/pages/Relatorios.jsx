@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { listarPorEspecie, listarPorFuncionario, listarDisponiveis } from "../services/animalService";
-import CardAnimal from "../components/CardAnimal";
+import {
+  listarPorEspecie,
+  listarPorFuncionario,
+  listarDisponiveis,
+} from "../services/animalService";
+import "./Relatorios.css";
 
 function Relatorios() {
   const [resultado, setResultado] = useState([]);
@@ -19,27 +23,64 @@ function Relatorios() {
   };
 
   return (
-    <div>
-      <h2>Relatórios</h2>
+    <div className="relatorios-container">
+      {/* Lado esquerdo */}
+      <div className="relatorios-esquerda">
+        <h2>Relatórios</h2>
 
-      <input placeholder="ID" value={id} onChange={(e) => setId(e.target.value)} />
-      <button onClick={buscarPorEspecie}>Por Espécie</button>
-      <button onClick={buscarPorFuncionario}>Por Funcionário</button>
-      <button onClick={buscarDisponiveis}>Disponíveis para Adoção</button>
+        <div className="input-area">
+          <input
+            placeholder="ID"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
+          <button onClick={buscarPorEspecie}>Por Espécie</button>
+          <button onClick={buscarPorFuncionario}>Por Funcionário</button>
+          <button onClick={buscarDisponiveis}>Disponíveis para Adoção</button>
+        </div>
 
-      <div className="lista">
-        {resultado.map((a) => (
-          <CardAnimal key={a.id} animal={a} />
-        ))}
+        <div className="tabela-container">
+          <table className="tabela-animais">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Espécie</th>
+                <th>Raça</th>
+                <th>Idade Estimada</th>
+                <th>Data de Entrada</th>
+                <th>Data de Adoção</th>
+                <th>Data de Óbito</th>
+                <th>Disponível para Adoção</th>
+                <th>Funcionário Responsável</th>
+              </tr>
+            </thead>
+            <tbody>
+              {resultado.map((a) => (
+                <tr key={a.id}>
+                  <td>{a.id}</td>
+                  <td>{a.nome}</td>
+                  <td>{a.nomeEspecie || "-"}</td>
+                  <td>{a.nomeRaca || "-"}</td>
+                  <td>{a.idadeEstimada || "-"}</td>
+                  <td>{a.dataEntrada || "-"}</td>
+                  <td>{a.dataAdocao || "-"}</td>
+                  <td>{a.dataObito || "-"}</td>
+                  <td>{a.disponivelParaAdocao ? "Sim" : "Não"}</td>
+                  <td>{a.nomeResponsavel || "-"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Lado direito */}
+      <div className="relatorios-direita">
+        {/* Conteúdo futuro será adicionado aqui */}
       </div>
     </div>
   );
 }
 
 export default Relatorios;
-// This is the Relatorios component for the Abrigo de Animais application.
-// It allows users to generate reports based on animal species, employees, or available animals for adoption.
-// It uses the animalService to fetch data from the backend API and displays the results using CardAnimal components.
-// The component maintains state for the search results and the input ID, and provides buttons to trigger the searches.
-// The results are displayed in a list format, with each animal represented by a CardAnimal component.
-// The component is designed to be user-friendly, allowing easy navigation through different reporting options.     

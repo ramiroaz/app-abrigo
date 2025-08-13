@@ -6,6 +6,8 @@ import {
 } from "../services/animalService";
 import axios from "axios";
 import { toast } from "react-toastify";
+import FormAnimal from "../components/FormAnimal";
+import FormConfirmarExclusao from "../components/FormConfirmarExclusao";
 
 function Animais() {
   const [animais, setAnimais] = useState([]);
@@ -23,6 +25,11 @@ function Animais() {
     disponivelParaAdocao: true,
     racaId: "",
     funcionarioId: "",
+    dataNascimentoEstimada: "",
+    dataEntrada: "",
+    dataAdocao: "",
+    dataObito: "",
+    idadeEstimada: "",
   });
   const [animalEditando, setAnimalEditando] = useState(null);
   const [animalParaExcluir, setAnimalParaExcluir] = useState(null);
@@ -97,7 +104,7 @@ function Animais() {
       });
   };
 
-    return (
+  return (
     <div>
       <h2>Animais</h2>
       <button className="btn verde" onClick={() => setModalAberto(true)}>
@@ -126,7 +133,13 @@ function Animais() {
               <td>{a.nomeResponsavel}</td>
               <td>{a.disponivelParaAdocao ? "Sim" : "Não"}</td>
               <td>
-                <button className="btn azul" onClick={() => { setAnimalEditando({ ...a }); setModalEdicao(true); }}>
+                <button
+                  className="btn azul"
+                  onClick={() => {
+                    setAnimalEditando({ ...a });
+                    setModalEdicao(true);
+                  }}
+                >
                   Editar
                 </button>
                 <button className="btn vermelho" onClick={() => solicitarExclusao(a)}>
@@ -139,84 +152,41 @@ function Animais() {
       </table>
 
       {modalAberto && (
-        <>
-          <div className="modal-overlay" onClick={() => setModalAberto(false)} />
-          <div className="modal">
-            <h3>Novo Animal</h3>
-            <form onSubmit={(e) => { e.preventDefault(); salvar(novoAnimal, () => setModalAberto(false)); }}>
-              <input name="id" value={novoAnimal.id} readOnly />
-              <input name="nome" placeholder="Nome" value={novoAnimal.nome} onChange={(e) => handleChange(e, setNovoAnimal)} required />
-              <input name="caracteristicas" placeholder="Características" value={novoAnimal.caracteristicas} onChange={(e) => handleChange(e, setNovoAnimal)} />
-              <input name="doencas" placeholder="Doenças" value={novoAnimal.doencas} onChange={(e) => handleChange(e, setNovoAnimal)} />
-              <input name="tratamentos" placeholder="Tratamentos" value={novoAnimal.tratamentos} onChange={(e) => handleChange(e, setNovoAnimal)} />
-              <label>
-                <input type="checkbox" name="disponivelParaAdocao" checked={novoAnimal.disponivelParaAdocao} onChange={(e) => handleChange(e, setNovoAnimal)} />
-                Disponível para adoção
-              </label>
-              <select name="racaId" value={novoAnimal.racaId} onChange={(e) => handleChange(e, setNovoAnimal)} required>
-                <option value="">Selecione a raça</option>
-                {racas.map((r) => <option key={r.id} value={r.id}>{r.nome}</option>)}
-              </select>
-              <select name="funcionarioId" value={novoAnimal.funcionarioId} onChange={(e) => handleChange(e, setNovoAnimal)} required>
-                <option value="">Selecione o funcionário</option>
-                {funcionarios.map((f) => <option key={f.id} value={f.id}>{f.nome}</option>)}
-              </select>
-              <button type="submit">Salvar</button>
-              <button type="button" onClick={() => setModalAberto(false)}>Cancelar</button>
-            </form>
-          </div>
-        </>
+        <FormAnimal
+          titulo="Novo Animal"
+          animal={novoAnimal}
+          racas={racas}
+          funcionarios={funcionarios}
+          onChange={(e) => handleChange(e, setNovoAnimal)}
+          onSubmit={(e) => {
+            e.preventDefault();
+            salvar(novoAnimal, () => setModalAberto(false));
+          }}
+          onCancel={() => setModalAberto(false)}
+        />
       )}
 
       {modalEdicao && animalEditando && (
-        <>
-          <div className="modal-overlay" onClick={() => setModalEdicao(false)} />
-          <div className="modal">
-            <h3>Editar Animal</h3>
-            <form onSubmit={(e) => { e.preventDefault(); confirmarEdicao(); }}>
-              <input name="id" value={animalEditando.id} readOnly />
-              <input name="nome" value={animalEditando.nome} onChange={(e) => handleChange(e, setAnimalEditando)} required />
-              <input name="caracteristicas" value={animalEditando.caracteristicas} onChange={(e) => handleChange(e, setAnimalEditando)} />
-              <input name="doencas" value={animalEditando.doencas} onChange={(e) => handleChange(e, setAnimalEditando)} />
-              <input name="tratamentos" value={animalEditando.tratamentos} onChange={(e) => handleChange(e, setAnimalEditando)} />
-              <label>
-                <input
-                  type="checkbox"
-                  name="disponivelParaAdocao"
-                  checked={animalEditando.disponivelParaAdocao}
-                  onChange={(e) => handleChange(e, setAnimalEditando)}
-                />
-                Disponível para adoção
-              </label>
-              <select name="racaId" value={animalEditando.racaId} onChange={(e) => handleChange(e, setAnimalEditando)} required>
-                <option value="">Selecione a raça</option>
-                {racas.map((r) => (
-                  <option key={r.id} value={r.id}>{r.nome}</option>
-                ))}
-              </select>
-              <select name="funcionarioId" value={animalEditando.funcionarioId} onChange={(e) => handleChange(e, setAnimalEditando)} required>
-                <option value="">Selecione o funcionário</option>
-                {funcionarios.map((f) => (
-                  <option key={f.id} value={f.id}>{f.nome}</option>
-                ))}
-              </select>
-              <button type="submit">Confirmar</button>
-              <button type="button" onClick={() => setModalEdicao(false)}>Cancelar</button>
-            </form>
-          </div>
-        </>
+        <FormAnimal
+          titulo="Editar Animal"
+          animal={animalEditando}
+          racas={racas}
+          funcionarios={funcionarios}
+          onChange={(e) => handleChange(e, setAnimalEditando)}
+          onSubmit={(e) => {
+            e.preventDefault();
+            confirmarEdicao();
+          }}
+          onCancel={() => setModalEdicao(false)}
+        />
       )}
 
       {modalConfirmacao && animalParaExcluir && (
-        <>
-          <div className="modal-overlay" onClick={() => setModalConfirmacao(false)} />
-          <div className="modal">
-            <h4>Confirmação</h4>
-            <p>Tem certeza que deseja deletar o animal <strong>{animalParaExcluir.nome}</strong>?</p>
-            <button className="btn vermelho" onClick={excluir}>Confirmar</button>
-            <button className="btn" onClick={() => setModalConfirmacao(false)}>Cancelar</button>
-          </div>
-        </>
+        <FormConfirmarExclusao
+          animal={animalParaExcluir}
+          onConfirmar={excluir}
+          onCancelar={() => setModalConfirmacao(false)}
+        />
       )}
     </div>
   );

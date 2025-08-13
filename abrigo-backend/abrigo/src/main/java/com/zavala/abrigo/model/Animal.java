@@ -1,5 +1,7 @@
 package com.zavala.abrigo.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +19,11 @@ public class Animal {
     private String tratamentos;
 
     private Boolean disponivelParaAdocao;
+    
+    private LocalDate dataNascimento;
+    private LocalDate dataEntrada;
+    private LocalDate dataAdocao;
+    private LocalDate dataObito;
 
     @ManyToOne
     @JoinColumn(name = "raca_id", nullable = false)
@@ -51,4 +58,38 @@ public class Animal {
 
     public Funcionario getFuncionario() { return funcionario; }
     public void setFuncionario(Funcionario funcionario) { this.funcionario = funcionario; }
+
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public LocalDate getDataEntrada() {
+		return dataEntrada;
+	}
+
+	public void setDataEntrada(LocalDate dataEntrada) {
+		this.dataEntrada = dataEntrada;
+	}
+
+	public LocalDate getDataAdocao() {
+		return dataAdocao;
+	}
+
+	public void setDataAdocao(LocalDate dataAdocao) {
+		this.dataAdocao = dataAdocao;
+	}
+
+	public LocalDate getDataObito() {
+		return dataObito;
+	}
+
+	public void setDataObito(LocalDate dataObito) {
+		this.dataObito = dataObito;
+	}
+    
+    
 }

@@ -1,0 +1,57 @@
+.relatorios-container {
+  display: flex;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.relatorios-esquerda,
+.relatorios-direita {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+}
+
+.relatorios-esquerda {
+  border-right: 1px solid #ccc;
+}
+
+.input-area {
+  margin-bottom: 20px;
+}
+
+.input-area input {
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.input-area button {
+  margin-right: 10px;
+  padding: 5px 10px;
+}
+
+.tabela-container {
+  overflow: auto;
+  max-height: 70vh;
+}
+
+.tabela-animais {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.tabela-animais th,
+.tabela-animais td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.tabela-animais th {
+  background-color: #f2f2f2;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
