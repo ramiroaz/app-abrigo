@@ -22,4 +22,7 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
     	       "(LOWER(a.caracteristicas) LIKE LOWER(CONCAT('%', :termo, '%')) " +
     	       "OR LOWER(a.doencas) LIKE LOWER(CONCAT('%', :termo, '%')))")
     	List<Animal> buscarAnimaisPorCaracteristicaOuDoenca(@Param("termo") String termo);
+    
+    @Query("SELECT a FROM Animal a WHERE a.dataAdocao IS NOT NULL ORDER BY a.dataEntrada")
+    List<Animal> findAdotado();
 }

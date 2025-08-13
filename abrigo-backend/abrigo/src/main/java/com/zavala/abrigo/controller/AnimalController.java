@@ -40,6 +40,11 @@ public class AnimalController {
     public List<AnimalDTO> listarDisponiveis() {
         return service.listarDisponiveis();
     }
+    
+    @GetMapping("/adotados")
+    public List<AnimalDTO> listarAdotados() {
+        return service.listarAdotados();
+    }
 
     @GetMapping("/por-especie/{id}")
     public List<AnimalDTO> listarPorEspecie(@PathVariable Long id) {

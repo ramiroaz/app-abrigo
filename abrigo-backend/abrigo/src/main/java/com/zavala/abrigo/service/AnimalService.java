@@ -82,6 +82,10 @@ public class AnimalService {
     public List<AnimalDTO> listarDisponiveis() {
         return animalRepo.findByDisponivelParaAdocaoTrue().stream().map(this::toDTO).collect(Collectors.toList());
     }
+    
+    public List<AnimalDTO> listarAdotados() {
+    	return animalRepo.findAdotado().stream().map(this::toDTO).collect(Collectors.toList());
+    }
 
     public List<AnimalDTO> listarPorEspecie(Long especieId) {
         return animalRepo.findByRacaEspecieId(especieId).stream().map(this::toDTO).collect(Collectors.toList());

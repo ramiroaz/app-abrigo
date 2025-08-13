@@ -1,57 +1,60 @@
 .relatorios-container {
   display: flex;
   height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.relatorios-esquerda,
-.relatorios-direita {
-  flex: 1;
-  padding: 20px;
-  overflow: auto;
 }
 
 .relatorios-esquerda {
+  flex: 1;
+  padding: 20px;
   border-right: 1px solid #ccc;
+  overflow-y: auto;
 }
 
-.input-area {
-  margin-bottom: 20px;
+.relatorios-direita {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow-y: auto;
 }
 
-.input-area input {
-  margin-right: 10px;
-  padding: 5px;
+/* Gráficos em linha */
+.relatorios-graficos {
+  display: flex;
+  gap: 20px;
 }
 
-.input-area button {
-  margin-right: 10px;
-  padding: 5px 10px;
+/* Cada gráfico ocupa 50% da largura da parte direita */
+.grafico-item {
+  flex: 1;
 }
 
-.tabela-container {
-  overflow: auto;
-  max-height: 70vh;
+/* Cards lado a lado */
+.relatorios-cards {
+  display: flex;
+  gap: 20px;
 }
 
-.tabela-animais {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 800px;
+.relatorio-card {
+  flex: 1;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
 }
 
-.tabela-animais th,
-.tabela-animais td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
-  font-size: 14px;
+.relatorio-card .numero {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
 }
 
-.tabela-animais th {
-  background-color: #f2f2f2;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+.relatorio-card .label {
+  margin-top: 8px;
+  font-size: 16px;
+  color: #555;
 }
+
+/* Se precisar de barras de rolagem internas */
+/* .relatorios-direita { overflow-x: auto; } */
