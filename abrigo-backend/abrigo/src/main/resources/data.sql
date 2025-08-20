@@ -30,7 +30,7 @@ INSERT INTO animal (
     raca_id, funcionario_id, data_nascimento, data_entrada, data_adocao, data_obito
 ) VALUES
 (1, 'Mimi', 'Pelagem branca', 'Dermatite', 'Pomada', true, 6, 1, '2020-03-10', '2023-01-15', NULL, NULL),
-(2, 'Luna', 'Olhos azuis', '', '', true, 7, 2, '2019-07-22', '2022-11-01', '2023-06-10', NULL),
+(2, 'Luna', 'Olhos azuis', '', '', false, 7, 2, '2019-07-22', '2022-11-01', '2023-06-10', NULL),
 (3, 'Nina', 'Muito dócil', '', '', false, 8, 1, '2018-05-05', '2021-09-20', NULL, '2024-02-01'),
 (4, 'Tigrinho', 'Listrado', 'Asma felina', 'Inalação', true, 9, 2, '2021-01-01', '2023-03-10', NULL, NULL),
 (5, 'Bola', 'Gordinho', '', '', true, 10, 3, '2022-06-15', '2023-07-01', NULL, NULL),
@@ -47,7 +47,7 @@ INSERT INTO animal (
 ) VALUES
 (11, 'Thor', 'Grande porte', 'Artrite', 'Fisioterapia', false, 1, 1, '2018-12-01', '2021-08-20', NULL, '2024-02-10'),
 (12, 'Max', 'Muito brincalhão', '', '', true, 2, 2, '2020-05-05', '2022-03-01', NULL, NULL),
-(13, 'Mel', 'Pelagem dourada', '', '', true, 3, 3, '2019-09-09', '2021-01-01', '2022-06-15', NULL),
+(13, 'Mel', 'Pelagem dourada', '', '', false, 3, 3, '2019-09-09', '2021-01-01', '2022-06-15', NULL),
 (14, 'Bob', 'Latido forte', '', '', false, 4, 1, '2017-11-11', '2020-02-02', NULL, '2023-08-08'),
 (15, 'Rex', 'Muito obediente', '', '', true, 5, 2, '2021-03-03', '2022-04-04', NULL, NULL),
 (16, 'Léo', 'Pequeno porte', '', '', true, 1, 3, '2022-07-07', '2023-01-01', NULL, NULL),

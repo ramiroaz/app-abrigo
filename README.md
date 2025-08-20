@@ -12,6 +12,11 @@ Sistema REST para gerenciamento de abrigo de animais, construído com Java 17 e 
 
 ---
 
+## 🎯 Video do projeto em Youtube
+https://www.youtube.com/watch?v=dOdIY67-p38
+
+---
+
 ## 🗂️ Estrutura
 
 abrigo-api/
